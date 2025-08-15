@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <form action="">
+    <label for="biblename">Enter the biblename letter</label>
+    <input type="text" id="bbname" name="bbname" required> <br> <br>
+    </form>
+    <button onclick="fletter()">See</button>
+    
+<br> <br>
+
+ <div id="resultContainer" class="result-section"></div>
+
+   <script>
+  function fletter(){
+    const lname = document.getElementById('bbname');
+
+    const bbnames = ['Daniel', 'Ruth', 'Adam', 'Esther', 'Luke', 'Seth', 'David']
+
+    const dnames = bbnames.includes(lname);
+
+    const resultContainer  = document.getElementById('resultContainer');
+    resultContainer.innerHTML = `
+    <h2>The names that start with ${lname} </h2>
+
+    <ul>
+        ${dnames.map(dnames => `<li>${dnames}</li>`).join('')}
+        </ul>
+   
+        `
+        return dnames;
+  }
+
+   </script>
+</body>
+</html>

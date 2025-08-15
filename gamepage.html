@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Game Page</title>
+</head>
+
+    
+    
+    <header class="header1">
+        <h1>Look it UP!!</h1>
+       <h2>Search your Tab of Choice and play</h2>
+       <form action="">
+        <label for="search"></label>
+        <input type="text" id="search" name="search" placeholder="search game">
+       </form>
+    </header>
+    <br> <hr> <br>  <br> 
+    <br> 
+    <div class="icons">
+    <button class="btn">
+         <i class="fa fa-home"></i>Home
+    </button>
+    <button class="btn">
+        <i class="fa fa-bars"></i>Choose
+    </button>
+    <button class="btn">
+        <i class="fa fa-close"></i>Close
+    </button>
+    <button class="btn">
+       <i class="fa fa-folder"></i>Files
+    </button>
+    <button class="btn">
+         <i class="fa fa-trash"></i>Delete
+    </button>
+    </div> 
+    <div class="btn2"> </div>
+    <br>
+    <h2 style=" color: plum; font-size: x-large;">
+        Scroll <i class="fa fa-arrow-right"></i>
+    </h2>
+    <div class="top-panels">
+    
+     
+    <div class="box" id="maths">
+    <h3>Enter your age and see what you will be (years old) in any year you choose</h3>
+        <br>
+        <fieldset>
+            <legend>Enter your details here </legend>
+            <form action="seeResults()" method="GET" id="results">
+             <label for="age">Enter your age</label> <br> 
+             <input type="number" id="age" name="age" placeholder="e.g 34"> <br>  <br>
+             <label for="year">Enter the year</label>
+             <select name="year" id="year">
+                <option value="nxtyr1">2025</option>
+                <option value="nxtyr2">2027</option>
+                <option value="nxtyr3">2028</option>
+                <option value="nxtyr4">2029</option>
+                <option value="nxtyr5">2030</option>
+             </select>
+            </form>
+        </fieldset> <br> <hr> <br>
+          <button onclick="output()" >See Result</button>
+          
+</div>
+
+<div class="box">
+    <h3>Generate Nicknames</h3>
+     <br>
+     <fieldset>
+        <legend>Fill in the boxes below</legend>
+     <form action="" method="GET" id="nameform">
+        <label for="fname">First name</label> <br>
+        <input type="text" id="fname" name="fname" required> <br> <br>
+        <label for="mname">Middle name (optional)</label> <br>
+        <input type="text" name="mname" id="mname"> <br>  <br>
+        <label for="lname">Last name</label> <br>
+        <input type="text" name="lname" id="lname" required>
+     </form>
+     </fieldset>
+     <br> <hr> <br>
+      <button onclick="generateNicknames()">See Result</button>
+</div>
+
+     <div class="box">
+        <h3>Generate passwords</h3> <br>
+        <fieldset>
+            <legend>Fill in feilds below (max = 10 chars)</legend>
+            <form action="" id="genpasswords">
+                <label for="letters">Enter letters</label> <br>
+                <input type="text" id="letters" name="letters" maxlength="10" required> <br> <br>
+                <label for="numbers">Enter numbers</label><br>
+                <input type="text" id="numbers" name="numbers" maxlength="10" required> <br> <br>
+                <label for="symbols">Symbols</label> <br>
+                <input type="text" id="symbols" name="symbols" maxlength="10" required>
+            </form>
+        </fieldset>
+          <br> <hr> <br>
+          <button onclick="generatePasswords()">See Result</button>
+     </div>
+     <div class="box">
+        <h3>Style my name</h3> <br>
+        <form action="" id="getname">
+            <label for="name">Enter your name</label> <br>
+            <input type="text" id="name" id="name" required> <br> <br>
+            <fieldset>
+                <legend>Choose your style</legend> <br>
+                
+                    <select name="style" id="setstyle">
+                        <option value="italics">Italics</option>
+                        <option value="pencil">Pencil Writiing</option>
+                    </select>
+                
+            </fieldset>
+        </form>
+          <br> <hr> <br>
+     <button onclick="stylemyname()">See Result</button>
+     </div>
+
+     <div class="box">
+        <h3>Find what number is a book in the bible</h3>  <br>
+         
+        <form action="">
+            <label for="fullname">Enter your name</label> <br>
+            <input type="text" id="fullname" name="fullname" required> <br> <br>
+         </form>
+            <fieldset>
+                <legend>Enter the name of a bible book </legend> <br>
+                <p style="color: plum; font: 1em sans-serif;">Please enter the full book name </p> <br>
+                <form action="">
+                <input type="text" id="book" name="book"> <br>
+                 </form>
+            </fieldset> <br> <hr> <br>
+            
+            <button onclick="bibbleBooks()">See Result</button>
+        
+     </div>
+</div>
+ <div class="btn2"> </div>
+
+    
+         <br>  <br>  <br> <br>
+    <div class="container2">
+     <div id="resultContainer" class="result-section"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

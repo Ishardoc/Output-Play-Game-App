@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Styler Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input, select, button {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Name Styler Game</h1>
+    <div>
+        <label>First Name:</label>
+        <input type="text" id="firstName" placeholder="John">
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <input type="text" id="lastName" placeholder="Doe">
+    </div>
+    <div>
+        <label>Middle Name (Optional):</label>
+        <input type="text" id="middleName" placeholder="Michael">
+    </div>
+    <div>
+        <label>Style:</label>
+        <select id="style">
+            <option value="cool">Cool</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="pirate">Pirate</option>
+            <option value="sci-fi">Sci-Fi</option>
+            <option value="royal">Royal</option>
+            <option value="ninja">Ninja</option>
+        </select>
+    </div>
+    <button onclick="generateStyledNickname()">Style My Name!</button>
+    <div id="result"></div>
+
+    <script>
+        // The full function goes here (see below)
+        function generateStyledNickname() {
+    // Get user inputs
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const middleName = document.getElementById("middleName").value.trim();
+    const style = document.getElementById("style").value;
+
+    // Validate input
+    if (!firstName || !lastName) {
+        alert("Please enter at least a first and last name!");
+        return;
+    }
+
+    // Generate the nickname based on style
+    let nickname = generateNameVariations(firstName, lastName, middleName);
+    let styledNickname = applyStyle(nickname, style);
+
+    // Display the result
+    document.getElementById("result").innerHTML = `
+        <strong>Original Name:</strong> ${firstName} ${middleName ? middleName + " " : ""}${lastName}<br>
+        <strong>Styled Nickname (${style}):</strong> ${styledNickname}
+    `;
+}
+
+// Helper function to generate different name variations
+function generateNameVariations(firstName, lastName, middleName = "") {
+    const variations = [];
+
+    // 1. Initials
+    variations.push(`${firstName[0]}${lastName[0]}`.toUpperCase()); // "JD"
+    if (middleName) variations.push(`${firstName[0]}${middleName[0]}${lastName[0]}`.toUpperCase()); // "JMD"
+
+    // 2. Shortened combos
+    variations.push(`${firstName.slice(0, 3)}${lastName.slice(0, 2)}`.toLowerCase()); // "JohDo"
+
+    // 3. First + Last initial
+    variations.push(`${firstName} ${lastName[0]}.`); // "John D."
+
+    // 4. Name mashup
+    variations.push(`${firstName.slice(0, 2)}${lastName.slice(-2)}`); // "Joeo"
+
+    // 5. Middle name special (if provided)
+    if (middleName) {
+        variations.push(`${firstName} "${middleName}" ${lastName}`); // 'John "Mike" Doe'
+        variations.push(`${middleName}-${lastName}`); // "Michael-Doe"
+    }
+
+    // Return a random variation
+    return variations[Math.floor(Math.random() * variations.length)];
+}
+
+// Apply the selected style to the nickname
+function applyStyle(nickname, style) {
+    const styles = {
+        cool: ["The Legendary", "Ultra", "Mega", "Super"],
+        fantasy: ["Dragonborn", "Shadow", "Ironclad", "Stormcaller"],
+        pirate: ["Captain", "Blackbeard's", "Sea Wolf", "Cursed"],
+        "sci-fi": ["Cyber", "Neon", "Quantum", "Nano"],
+        royal: ["King", "Queen", "Lord", "Lady"],
+        ninja: ["Silent", "Shadow", "Ghost", "Phantom"]
+    };
+
+    const prefixes = styles[style] || [""];
+    const suffixes = {
+        cool: ["X", "Z", "Pro", "Max"],
+        fantasy: ["the Brave", "the Wise", "of the North", "the Eternal"],
+        pirate: ["of the Seven Seas", "the Marauder", "the Dreaded"],
+        "sci-fi": ["-3000", "Prime", "V2"],
+        royal: ["the Magnificent", "the Noble", "the Just"],
+        ninja: ["of the Night", "the Silent Blade", "the Unseen"]
+    };
+
+    const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+    const randomSuffix = (suffixes[style] || [""])[Math.floor(Math.random() * suffixes[style].length)];
+
+    return `${randomPrefix} ${nickname} ${randomSuffix}`.trim();
+}
+    </script>
+</body>
+</html>
